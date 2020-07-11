@@ -94,7 +94,16 @@ function drawLastTicket(ticketNumber){
 }
 
 let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-const availableTickets = [1,2,3,5];
+let availableTickets = [];
+let unavailableTickets = [];
+for(const ticketId in allTickets) {
+    availableTickets.push(parseInt(ticketId))
+    const ticket = allTickets[ticketId]
+    if(ticket.unlocks) {
+        unavailableTickets = unavailableTickets.concat(ticket.unlocks)
+    }
+}
+availableTickets = availableTickets.filter(ticket => !unavailableTickets.includes(ticket))
 
 let lastTicket = 0;
 const nowTickets = {};
