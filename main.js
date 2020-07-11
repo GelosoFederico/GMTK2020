@@ -10,14 +10,21 @@ function mainLoop(){
         redrawStats();
         generateTickets();
         inMainLoop = false;
+        console.log(player)
     }
 }
 
 function redrawStats(){
     player.anxiety += gameState.anxietyPerTick;
 
-    document.getElementById('player_happiness').innerText = Math.floor(player.happiness);
-    document.getElementById('player_anxiety').innerText = Math.floor(player.anxiety);
+    const playerHappinessPerc = `${Math.floor(player.happiness / 10)}%`;
+    const playerAnxietyPerc = `${Math.floor(player.anxiety / 10)}%`;
+
+    document.getElementById('player_happiness').style.width = playerHappinessPerc;
+    document.getElementById('player_anxiety').style.width = playerAnxietyPerc;
+
+    document.getElementById('player_happiness_text').innerText = playerHappinessPerc;
+    document.getElementById('player_anxiety_text').innerText = playerAnxietyPerc;
     updateImage();
 }
 
