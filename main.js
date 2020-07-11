@@ -16,6 +16,16 @@ function redrawStats(){
 
     document.getElementById('player_happiness').innerText = Math.floor(player.happiness);
     document.getElementById('player_anxiety').innerText = Math.floor(player.anxiety);
+    updateImage();
+}
+
+function updateImage(){
+    const idImage = 1+'_'+Math.ceil(player.anxiety/200);//Math.ceil(player.happiness/200);
+    if(idImage === '1_5'){
+        document.getElementById('image-status').src = '/assets/image_'+idImage+'.gif';
+    } else {
+        document.getElementById('image-status').src = '/assets/image_'+idImage+'.svg';
+    }
 }
 
 function generateTickets(){
