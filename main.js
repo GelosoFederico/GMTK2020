@@ -1,5 +1,7 @@
 import allTickets from './tickets.js'
 
+(function() {
+
 function mainLoop(){
     if(!gameState.pause){
         if(inMainLoop === true){
@@ -10,7 +12,6 @@ function mainLoop(){
         redrawStats();
         generateTickets();
         inMainLoop = false;
-        console.log(player)
     }
 }
 
@@ -147,7 +148,22 @@ document.getElementById('pause_button').addEventListener('click',function(){
     }
 })
 
+//TODO: REMOVE BEFORE GAMEJAM DEADLINE
+document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+        case "m":
+            return player.anxiety += 150;
+        case "n":
+            return player.anxiety -= 150;
+        case "b":
+            return player.happiness += 150;
+        case "v":
+            return player.happiness -= 150;
+    }
+})
 
 // Here we set the game loop
 // if this game loop is janky, we should change it for something like what is explained here http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html
 var interval = setInterval(mainLoop, 1000/5); 
+
+})()
