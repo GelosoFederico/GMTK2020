@@ -31,7 +31,9 @@ function generateTickets(){
         nowTickets[lastTicket] = ticket;
         gameState.anxietyPerTick += realTicket.anxietyPerTick;
         drawLastTicket(lastTicket);
-        if(realTicket.unique) availableTickets.splice(realTicketId);
+        if(realTicket.unique){
+            availableTickets.splice(avTicket);
+        } 
     }
 }
 
@@ -84,6 +86,7 @@ function drawLastTicket(ticketNumber){
         gameState.loss = true;
         document.getElementById('lost-alert-tickets').style = 'display: block;';
         gameState.pause = true;
+        return true;
     }
     const arrPos = Math.floor(Math.random() * openPos.length);
     const pos = openPos[arrPos];
@@ -138,11 +141,11 @@ const allTickets = {
     },
     6:{
         'id': 6,
-        'title': 'get a cat',
-        'clicks': 5,
-        'anxietyPerTick': 0,
+        'title': 'clean the litter box',
+        'clicks': 10,
+        'anxietyPerTick': 0.3,
         'anxietyRelief': 1,
-        'happinessRelief': 10
+        'happinessRelief': 1
     }
 };
 
