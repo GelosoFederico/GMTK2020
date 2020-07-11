@@ -43,13 +43,13 @@ function drawLastTicket(ticketNumber){
     const realTicket = allTickets[nowTickets[ticketNumber].id];
     newTicket.innerHTML = `
     <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem;">
+    <button class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem;">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">${realTicket.title}</h5>
       </div>
       <p class="mb-1" id="${ticketNumber + 'clicks'}">CLICKS LEFT ${ticket.clicks}</p>
       <p class="mb-1" >anx+ ${realTicket.anxietyPerTick} anx- ${realTicket.anxietyRelief} hap+ ${realTicket.happinessRelief}</p>
-    </a>
+    </button>
     </div>
   `;
     newTicket.id = ticketNumber;
