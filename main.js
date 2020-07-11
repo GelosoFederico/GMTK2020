@@ -15,6 +15,7 @@ function mainLoop(){
 
 function redrawStats(){
     player.anxiety += gameState.anxietyPerTick;
+    player.happiness -= Math.floor(player.anxiety/100)/10;
 
     document.getElementById('player_happiness').innerText = Math.floor(player.happiness);
     document.getElementById('player_anxiety').innerText = Math.floor(player.anxiety);
