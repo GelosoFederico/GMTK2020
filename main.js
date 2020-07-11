@@ -1,3 +1,5 @@
+import allTickets from './tickets.js'
+
 function mainLoop(){
     if(!gameState.pause){
         if(inMainLoop === true){
@@ -53,13 +55,13 @@ function drawLastTicket(ticketNumber){
     const realTicket = allTickets[nowTickets[ticketNumber].id];
     newTicket.innerHTML = `
     <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem;">
+    <button class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem;">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">${realTicket.title}</h5>
       </div>
       <p class="mb-1" id="${ticketNumber + 'clicks'}">CLICKS LEFT ${ticket.clicks}</p>
       <p class="mb-1" >anx+ ${realTicket.anxietyPerTick} anx- ${realTicket.anxietyRelief} hap+ ${realTicket.happinessRelief}</p>
-    </a>
+    </button>
     </div>
   `;
     newTicket.id = ticketNumber;
@@ -105,64 +107,20 @@ function drawLastTicket(ticketNumber){
 }
 
 let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-const availableTickets = [1,2,3,5];
-const allTickets = {
-    1:{
-        'id': 1,
-        'title': 'work',
-        'clicks': 10,
-        'anxietyPerTick': 0.1,
-        'anxietyRelief': 2,
-        'happinessRelief': 1
-    },
-    2:{
-        'id': 2,
-        'title': 'study',
-        'clicks': 10,
-        'anxietyPerTick': 0.1,
-        'anxietyRelief': 2,
-        'happinessRelief': 1
-    },
-    3:{
-        'id': 3,
-        'title': 'take a walk',
-        'clicks': 5,
-        'anxietyPerTick': 0.1,
-        'anxietyRelief': 2,
-        'happinessRelief': 1
-    },
-    4:{
-        'id': 4,
-        'title': 'pet a cat',
-        'clicks': 2,
-        'anxietyPerTick': 0,
-        'anxietyRelief': 3,
-        'happinessRelief': 2
-    },
-    5:{
-        'id': 5,
-        'title': 'get a cat',
-        'clicks': 5,
-        'anxietyPerTick': 0,
-        'anxietyRelief': 1,
-        'happinessRelief': 10,
-        'unlocks': [4,6],
-        'unique': true
-    },
-    6:{
-        'id': 6,
-        'title': 'clean the litter box',
-        'clicks': 10,
-        'anxietyPerTick': 0.3,
-        'anxietyRelief': 1,
-        'happinessRelief': 1
+let availableTickets = [];
+let unavailableTickets = [];
+for(const ticketId in allTickets) {
+    availableTickets.push(parseInt(ticketId))
+    const ticket = allTickets[ticketId]
+    if(ticket.unlocks) {
+        unavailableTickets = unavailableTickets.concat(ticket.unlocks)
     }
-};
-
+}
+availableTickets = availableTickets.filter(ticket => !unavailableTickets.includes(ticket))
 
 let lastTicket = 0;
 const nowTickets = {};
-inMainLoop = false;
+var inMainLoop = false;
 const gameState = {
     anxietyPerTick : 0,
     pause: false
