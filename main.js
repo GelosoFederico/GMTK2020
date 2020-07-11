@@ -10,7 +10,6 @@ function mainLoop(){
         redrawStats();
         generateTickets();
         inMainLoop = false;
-        console.log(player)
     }
 }
 
@@ -30,11 +29,16 @@ function redrawStats(){
 }
 
 function updateImage(){
-    const idImage = 1+'_'+(Math.ceil(player.anxiety/200) ? Math.ceil(player.anxiety/200) : 1);//Math.ceil(player.happiness/200);
+    const idImage = 1+'_'+(Math.ceil(player.anxiety/200) ? Math.ceil(player.anxiety/200) : 1);
+    const oldImage = document.getElementById('image-status').src;
+    let newImage = '';
     if(idImage === '1_5'){
-        document.getElementById('image-status').src = 'assets/image_'+idImage+'.gif';
+        newImage = 'assets/image_'+idImage+'.gif';
     } else {
-        document.getElementById('image-status').src = 'assets/image_'+idImage+'.svg';
+        newImage = 'assets/image_'+idImage+'.svg';
+    }
+    if(oldImage != newImage) {
+        document.getElementById('image-status').src = newImage;
     }
 }
 
