@@ -21,7 +21,8 @@ function redrawStats(){
 function generateTickets(){
     if(Math.random() > 0.9) {
         lastTicket++;
-        const realTicketId = availableTickets[Math.ceil(Math.random() * availableTickets)];
+        const avTicket = Math.floor(Math.random() * availableTickets.length);
+        const realTicketId = availableTickets[avTicket];
         const realTicket = allTickets[realTicketId];
         const ticket = {
             'id': realTicket.id,
@@ -51,7 +52,31 @@ function drawLastTicket(ticketNumber){
   `;
     newTicket.id = ticketNumber;
     newTicket.addEventListener('click',function(){
-        clickAction(this);
+        if(!gameState.pause) {
+            nowTickets[this.id].clicks--;
+            this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
+            if(nowTickets[this.id].clicks === 0){
+                const realTicket = allTickets[nowTickets[ticketNumber].id];
+    
+                // player or gamestate changes
+                gameState.anxietyPerTick -= realTicket.anxietyPerTick;
+                player.anxiety -= realTicket.anxietyRelief;
+                player.happiness += realTicket.happinessRelief;
+    
+                // Available tickets changes
+                if(realTicket.unlocks) {
+                    for(let i=0; i<realTicket.unlocks.length; i++) {
+                        availableTickets.push(realTicket.unlocks[i]);
+                    }
+                }
+       
+                // UI changes
+                const parentId = this.parentElement.id.substring(3); // from pos##
+                this.parentElement.removeChild(this);
+                openPos.push(parseInt(parentId));
+        
+            }
+        }
     });
 
     // losing condition: full tickets
@@ -65,36 +90,6 @@ function drawLastTicket(ticketNumber){
     document.getElementById('pos'+pos).appendChild(newTicket);
     openPos.splice(arrPos,1);
 }
-
-function clickAction(thing){
-    if(!gameState.pause) {
-        nowTickets[thing.id].clicks--;
-        thing.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
-        if(nowTickets[thing.id].clicks === 0){
-            const realTicket = allTickets[nowTickets[ticketNumber].id];
-
-            // player or gamestate changes
-            gameState.anxietyPerTick -= realTicket.anxietyPerTick;
-            player.anxiety -= realTicket.anxietyRelief;
-            player.happiness += realTicket.happinessRelief;
-
-            // Available tickets changes
-            if(realTicket.unlocks) {
-                for(let i=0; i<realTicket.unlocks.length; i++) {
-                    availableTickets.push(realTicket.unlocks[i]);
-                }
-            }
-   
-            // UI changes
-            const parentId = thing.parentElement.id.substring(3); // from pos##
-            thing.parentElement.removeChild(thing);
-            openPos.push(parseInt(parentId));
-    
-        }
-    }
-}   
-
-
 
 let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 const availableTickets = [1,2,3,5];
@@ -142,7 +137,7 @@ const allTickets = {
         'unique': true
     },
     6:{
-        'id': 5,
+        'id': 6,
         'title': 'get a cat',
         'clicks': 5,
         'anxietyPerTick': 0,
