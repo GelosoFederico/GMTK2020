@@ -16,7 +16,20 @@ function mainLoop(){
 }
 
 function redrawStats(){
-    player.anxiety += gameState.anxietyPerTick;
+    if(gameState.countdownAnxiety) player.anxiety += gameState.anxietyPerTick;
+    if(gameState.countdownHappiness) player.happiness -= Math.floor(player.anxiety/100)/10;
+
+    // losing conditions
+    if (player.anxiety > 1000){
+        gameState.countdownAnxiety = true;
+    } else {
+        gameState.countdownAnxiety = false;
+    }
+    if (player.happiness < 0){
+        gameState.countdownHappiness = true;
+    } else {
+        gameState.countdownHappiness = false;
+    }
 
     const playerHappinessPerc = `${Math.floor(player.happiness / 10)}%`;
     const playerAnxietyPerc = `${Math.floor(player.anxiety / 10)}%`;
@@ -30,11 +43,16 @@ function redrawStats(){
 }
 
 function updateImage(){
-    const idImage = 1+'_'+(Math.ceil(player.anxiety/200) ? Math.ceil(player.anxiety/200) : 1);//Math.ceil(player.happiness/200);
+    const idImage = 1+'_'+(Math.ceil(player.anxiety/200) ? Math.ceil(player.anxiety/200) : 1);
+    const oldImage = document.getElementById('image-status').src;
+    let newImage = '';
     if(idImage === '1_5'){
-        document.getElementById('image-status').src = 'assets/image_'+idImage+'.gif';
+        newImage = 'assets/image_'+idImage+'.gif';
     } else {
-        document.getElementById('image-status').src = 'assets/image_'+idImage+'.svg';
+        newImage = 'assets/image_'+idImage+'.svg';
+    }
+    if(oldImage != newImage) {
+        document.getElementById('image-status').src = newImage;
     }
 }
 
@@ -131,7 +149,9 @@ const nowTickets = {};
 var inMainLoop = false;
 const gameState = {
     anxietyPerTick : 0,
-    pause: false
+    pause: false,
+    countdownHappiness: false,
+    countdownAnxiety: false
 };
 
 var player = {
