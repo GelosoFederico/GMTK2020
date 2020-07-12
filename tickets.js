@@ -473,5 +473,75 @@ export default {
         'happinessRelief': 400,
         'unique': true,
     },
+    48: {
+        id: 48,
+        title: 'Do taxwork',
+        clicks: 10,
+        anxietyPerTick: 0.1,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        starter: true,
+        unlocksWhen: {
+            number: 2,
+            unlocks: [49],
+            locksItself: true,
+        }
+    },
+    49: {
+        id: 49,
+        title: 'Do taxwork (hey these are easy)',
+        clicks: 10,
+        anxietyPerTick: 0.1,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        unlocksWhen: {
+            number: 3,
+            unlocks: [50],
+            locksItself: true,
+        }
+    },
+    50: {
+        id: 50,
+        title: 'Do taxwork (wait what does "Unearned income" mean?)',
+        clicks: 10,
+        anxietyPerTick: 0.3,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        unique: true,
+        unlocks: [51]
+    },
+    51: {
+        id: 51,
+        title: 'Do taxwork (where\'s that f@$#ing receipt?!)',
+        clicks: 20,
+        anxietyPerTick: 0.3,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        unlocksWhen: {
+            number: 4,
+            unlocks: [52],
+            locksItself: true,
+        }
+    },
+    52: {
+        id: 51,
+        title: 'Finish yearly taxes',
+        clicks: 40,
+        anxietyPerTick: 0.3,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        unique: true,
+        unlocks: [53]
+    },
+    52: {
+        id: 51,
+        title: 'OH GOD THE TAX DEADLINE IS TOMORROW',
+        clicks: 10,
+        anxietyPerTick: 0.7,
+        anxietyRelief: 300,
+        happinessRelief: 40,
+        unique: true,
+    },
+
 
 }
