@@ -524,7 +524,7 @@ export default {
         }
     },
     52: {
-        id: 51,
+        id: 52,
         title: 'Finish yearly taxes',
         clicks: 40,
         anxietyPerTick: 0.3,
@@ -533,15 +533,16 @@ export default {
         unique: true,
         unlocks: [53]
     },
-    52: {
-        id: 51,
+    53: {
+        id: 53,
         title: 'OH GOD THE TAX DEADLINE IS TOMORROW',
         clicks: 10,
         anxietyPerTick: 0.7,
         anxietyRelief: 300,
-        happinessRelief: 40,
+        happinessRelief: 100,
         unique: true,
     },
+    
 
 
 }
