@@ -376,6 +376,7 @@ document.getElementById('restart-button').addEventListener('click',function(){
     document.getElementById('mute_button').innerText = 'MUTE';
     document.getElementById('lost-alert').style = 'display: none;';
     document.getElementById('restart-button').style = 'display: none;';
+    document.getElementById('win-alert').style = 'display: none;';
 });
 
 //TODO: REMOVE BEFORE GAMEJAM DEADLINE
