@@ -1,9 +1,13 @@
 export default function getTicketApproxValues(ticket) {
     let values = {};
-    if(ticket.anxietyPerTick >= 10) {
+    if(ticket.anxietyPerTick >= 0.9) {
         values.anxietyPerTick = "HIGH"
-    } else if (ticket.anxietyPerTick > 0) {
+    } else if (ticket.anxietyPerTick > 0.5) {
+        values.anxietyPerTick = "MEDIUM"
+    } else if (ticket.anxietyPerTick > 0.1) {
         values.anxietyPerTick = "LOW"
+    } else if (ticket.anxietyPerTick > 0) {
+        values.anxietyPerTick = "VERY LOW"
     } else if (ticket.anxietyPerTick === 0) {
         values.anxietyPerTick = "NONE"
     }
@@ -14,6 +18,8 @@ export default function getTicketApproxValues(ticket) {
         values.anxietyRelief = "LOW"
     } else if (ticket.anxietyRelief === 0) {
         values.anxietyRelief = "NONE"
+    } else {
+        values.anxietyRelief = "NEGATIVE"
     }
 
     if(ticket.happinessRelief >= 100) {
