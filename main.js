@@ -8,7 +8,7 @@ function mainLoop(){
             console.error('mainLoop called while processing loop. There may be slowdowns');
         }
         inMainLoop = true;
-        console.log('doing loop');
+        console.log(gameState, player)
         redrawStats();
         generateTickets();
         inMainLoop = false;
