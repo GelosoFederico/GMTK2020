@@ -8,6 +8,7 @@ function mainLoop(){
             console.error('mainLoop called while processing loop. There may be slowdowns');
         }
         inMainLoop = true;
+        // debugging log
         console.log(gameState, player, availableTickets);
         redrawStats();
         generateTickets();
@@ -74,6 +75,24 @@ function loseState() {
 
 function generateTickets(){
     if(Math.random() > 0.9) {
+        // full tickets in screen logic
+        if(openPos.length == 0 && !gameState.ticketAlert){
+            ticketCantEnterSound();
+            gameState.ticketAlert = true;
+            document.getElementById('tickets-full').style = 'display: block;';
+            setTimeout(function() {
+                clearTicketAlert();
+            }, 3000);
+            player.anxiety += 50;
+            if (player.anxiety > 1000){
+                gameState.countdownAnxiety = true;
+                loseState();
+            }
+            return true;
+        //full tickets but there is already a message
+        } else if (openPos.length == 0 && gameState.ticketAlert) {
+            return true;
+        }
         lastTicket++;
         const avTicket = Math.floor(Math.random() * availableTickets.length);
         const realTicketId = availableTickets[avTicket];
@@ -122,10 +141,13 @@ function drawLastTicket(ticketNumber){
   `;
     newTicket.id = ticketNumber;
     newTicket.dataset.ticketId = realTicket.id
+    incomingTicketSound();
+    // click ticket event
     newTicket.addEventListener('click',function(){
         if(!gameState.pause) {
             nowTickets[this.id].clicks--;
             this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
+            // finished ticket logic
             if(nowTickets[this.id].clicks === 0 && !this.className.includes('ticket--closing')){
                 this.classList.add('ticket--closing')
                 if(realTicket.locks) {
@@ -161,25 +183,29 @@ function drawLastTicket(ticketNumber){
         }
     });
 
-    // full tickets
-    if(openPos.length == 0 && !gameState.ticketAlert){
-        gameState.ticketAlert = true;
-        document.getElementById('tickets-full').style = 'display: block;';
-        setTimeout(function() {
-            clearTicketAlert();
-          }, 3000);
-        player.anxiety += 50;
-        if (player.anxiety > 1000){
-            gameState.countdownAnxiety = true;
-            loseState();
-        }
-        return true;
-    }
+
     const arrPos = Math.floor(Math.random() * openPos.length);
     const pos = openPos[arrPos];
     document.getElementById('pos'+pos).appendChild(newTicket);
     openPos.splice(arrPos,1);
 }
+
+function incomingTicketSound() {
+    incomingTicketSoundFiles[Math.floor(Math.random()*(incomingTicketSoundFiles.length))].play();
+}
+
+function ticketCantEnterSound() {
+    ticketCantEnterSoundFile.play();
+}
+
+// preloaded audios
+const incomingTicketSoundFiles = [
+    new Audio('assets/sound_incoming1.mp3'),
+    new Audio('assets/sound_incoming2.mp3'),
+    new Audio('assets/sound_incoming3.mp3'),
+    new Audio('assets/sound_incoming4.mp3'),
+];
+const ticketCantEnterSoundFile = new Audio('assets/sound_blocked.mp3');
 
 const lockedTickets = {};
 let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
