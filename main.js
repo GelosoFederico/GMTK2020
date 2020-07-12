@@ -16,8 +16,8 @@ function mainLoop(){
 }
 
 function redrawStats(){
-    if(gameState.countdownAnxiety) player.anxiety += gameState.anxietyPerTick;
-    if(gameState.countdownHappiness) player.happiness -= Math.floor(player.anxiety/100)/10;
+    if(!gameState.countdownAnxiety) player.anxiety += gameState.anxietyPerTick;
+    if(!gameState.countdownHappiness) player.happiness -= Math.floor(player.anxiety/100)/10;
 
     // losing conditions
     if (player.anxiety > 1000){
