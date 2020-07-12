@@ -76,7 +76,7 @@ function loseState() {
 
 function generateTickets(){
     // Salio el random y, si esta en tutorial, termino su ticket
-    if(Math.random() > 0.9 && (!gameState.tutorialMode || (gameState.tutorialMode && gameState.tutorialTicketDone))) {
+    if(Math.random() > 0.9 && ((!gameState.tutorialMode && availableTickets.length) || (gameState.tutorialMode && gameState.tutorialTicketDone))) {
         // full tickets in screen logic
         if(openPos.length == 0 && !gameState.ticketAlert){
             ticketCantEnterSound();
@@ -97,12 +97,12 @@ function generateTickets(){
         } else if (openPos.length == 0 && gameState.ticketAlert) {
             return true;
         }
-        lastTicket++;
         const avTicket = Math.floor(Math.random() * availableTickets.length);
         const realTicketId = availableTickets[avTicket];
-        if(lockedTickets[avTicket]){
+        if(lockedTickets[realTicketId]){
             availableTickets.splice(avTicket,1);
         } else {
+            lastTicket++;
             let realTicket;
             if(gameState.tutorialMode){
                 gameState.tutorialTicketDone = false;
@@ -118,7 +118,7 @@ function generateTickets(){
             gameState.anxietyPerTick += realTicket.anxietyPerTick;
             if(realTicket.unique){
                 availableTickets.splice(avTicket,1);
-                lockedTickets[avTicket] = true;
+                lockedTickets[realTicketId] = true;
             } 
             if(realTicket.uniqueLine){
                 availableTickets.splice(avTicket,1);
@@ -195,6 +195,21 @@ function drawLastTicket(ticketNumber){
                             availableTickets.push(realTicket.unlocks[i]);
                         }
                     }
+                    if(realTicket.unlocksWhen){
+                        if(!unlocksWhenCounts[realTicket.id]){
+                            unlocksWhenCounts[realTicket.id] = 1;
+                        } else {
+                            unlocksWhenCounts[realTicket.id]++;
+                            if(unlocksWhenCounts[realTicket.id] == realTicket.unlocksWhen.number){
+                                for(let i=0; i<realTicket.unlocksWhen['unlocks'].length; i++) {
+                                    availableTickets.push(realTicket.unlocksWhen['unlocks'][i]);
+                                }
+                                if(realTicket.unlocksWhen['locksItself']) {
+                                    lockedTickets[realTicket.id] = true;
+                                }
+                            }
+                        }
+                    }
 
                     if(gameState.tutorialMode){
                         gameState.tutorialTicket++;
@@ -245,6 +260,7 @@ const ticketCantEnterSoundFile = new Audio('assets/sound_blocked.mp3');
 let lockedTickets = {};
 let openPos = [];
 let availableTickets = [];
+let unlocksWhenCounts = {};
 let nTutorialTickets = 6;
 
 
@@ -294,6 +310,7 @@ function setStartingConditions() {
 
     nowTickets = {};
     lockedTickets = {};    
+    unlocksWhenCounts = {};
     openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
     availableTickets = [];
