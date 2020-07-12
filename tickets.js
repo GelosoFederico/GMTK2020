@@ -277,4 +277,33 @@ export default {
     //     'unique': false,
     //     'minAnxiety': 500
     // },
+
+    // TUTORIAL TICKETS
+    29: {
+        'id': 29,
+        'title': 'CLICK ME',
+        'clicks': 1,
+        'anxietyPerTick': 0,
+        'anxietyRelief': 0,
+        'happinessRelief': 10,
+        'unique': false,
+    },
+    30: {
+        'id': 30,
+        'title': 'CLICK ME MORE',
+        'clicks': 3,
+        'anxietyPerTick': 0,
+        'anxietyRelief': 0,
+        'happinessRelief': 10,
+        'unique': false,
+    },
+    31: {
+        'id': 31,
+        'title': 'Now the fun begins',
+        'clicks': 5,
+        'anxietyPerTick': 0,
+        'anxietyRelief': 0,
+        'happinessRelief': 10,
+        'unique': false,
+    },
 }

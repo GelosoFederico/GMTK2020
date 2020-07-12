@@ -75,7 +75,8 @@ function loseState() {
 }
 
 function generateTickets(){
-    if(Math.random() > 0.9) {
+    // Salio el random y, si esta en tutorial, termino su ticket
+    if(Math.random() > 0.9 && (!gameState.tutorialMode || (gameState.tutorialMode && gameState.tutorialTicketDone))) {
         // full tickets in screen logic
         if(openPos.length == 0 && !gameState.ticketAlert){
             ticketCantEnterSound();
@@ -102,7 +103,13 @@ function generateTickets(){
         if(lockedTickets[avTicket]){
             availableTickets.splice(avTicket,1);
         } else {
-            const realTicket = allTickets[realTicketId];
+            let realTicket;
+            if(gameState.tutorialMode){
+                gameState.tutorialTicketDone = false;
+                realTicket = allTickets[29 + gameState.tutorialTicket];
+            }else{
+                realTicket = allTickets[realTicketId];
+            }
             const ticket = {
                 'id': realTicket.id,
                 'clicks': realTicket.clicks
@@ -175,6 +182,12 @@ function drawLastTicket(ticketNumber){
                             availableTickets.push(realTicket.unlocks[i]);
                         }
                     }
+
+                    if(gameState.tutorialMode){
+                        gameState.tutorialTicket++;
+                        gameState.tutorialTicketDone = true;
+                        if(gameState.tutorialTicket > 2) gameState.tutorialMode = false;
+                    }
            
                     // UI changes
                     const parentId = this.parentElement.id.substring(3); // from pos##
@@ -231,6 +244,9 @@ let gameState = {
     countdownAnxiety: false,
     ticketAlert: false,
     muted: false,
+    tutorialMode: true,
+    tutorialTicket: 0,
+    tutorialTicketDone: true,
 };
 
 var player = {
