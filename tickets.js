@@ -65,7 +65,6 @@ export default {
         'anxietyPerTick': 0.1,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
         'unique': false
     },
     9: {
@@ -75,7 +74,6 @@ export default {
         'anxietyPerTick': 0,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
         'unique': false
     },
     10: {
@@ -85,7 +83,6 @@ export default {
         'anxietyPerTick': 0,
         'anxietyRelief': 1,
         'happinessRelief': 10,
-        'unlocks': 0,
         'unique': false
     },
     11: {
@@ -95,7 +92,6 @@ export default {
         'anxietyPerTick': 0,
         'anxietyRelief': 0,
         'happinessRelief': -5,
-        'unlocks': 0,
         'unique': false
     },
     12: {
@@ -115,7 +111,6 @@ export default {
         'anxietyPerTick': 0.2,
         'anxietyRelief': 0,
         'happinessRelief': 1,
-        'unlocks': 0,
         'unique': true
     },
     14: {
@@ -125,7 +120,6 @@ export default {
         'anxietyPerTick': 0.5,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
         'unique': false
     },
     15: {
@@ -146,6 +140,7 @@ export default {
         'anxietyRelief': 2,
         'happinessRelief': 7,
         'unlocks': [17],
+        'locks': [15, 14],
         'unique': true
     },
     17: {
@@ -155,7 +150,6 @@ export default {
         'anxietyPerTick': 0.2,
         'anxietyRelief': 2,
         'happinessRelief': 10,
-        'unlocks': 0,
         'unique': true
     },
     // 18: {
@@ -165,7 +159,6 @@ export default {
     //     'anxietyPerTick': 0.2,
     //     'anxietyRelief': 1,
     //     'happinessRelief': 4,
-    //     'unlocks': 0,
     //     'unique': false
     // },
     // 19: {
@@ -175,7 +168,6 @@ export default {
     //     'anxietyPerTick': 0.1,
     //     'anxietyRelief': 0,
     //     'happinessRelief': 1,
-    //     'unlocks': 0,
     //     'unique': false
     // },
     // 20: {
@@ -184,7 +176,6 @@ export default {
     //     'anxietyPerTick': 0,
     //     'anxietyRelief': 1,
     //     'happinessRelief': 1,
-    //     'unlocks': 0,
     //     'unique': false
     // },
     // 21: {
@@ -211,7 +202,6 @@ export default {
     //     'anxietyPerTick': 0.1,
     //     'anxietyRelief': 2,
     //     'happinessRelief': 5,
-    //     'unlocks': 0,
     //     'unique': false
     // },
     24: {
@@ -231,7 +221,6 @@ export default {
         'anxietyPerTick': 0,
         'anxietyRelief': 1,
         'happinessRelief': 5,
-        'unlocks': 0,
         'unique': false
     },
     26: {
@@ -241,7 +230,6 @@ export default {
         'anxietyPerTick': 0.5,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
         'unique': true
     },
     27: {
@@ -251,7 +239,6 @@ export default {
         'anxietyPerTick': 0.9,
         'anxietyRelief': 0,
         'happinessRelief': 4,
-        'unlocks': 0,
         'unique': true
     },
     // 28: {
@@ -261,7 +248,6 @@ export default {
     //     'anxietyPerTick': 1,
     //     'anxietyRelief': 0,
     //     'happinessRelief': 0,
-    //     'unlocks': 0,
     //     'unique': false,
     //     'minAnxiety': 500
     // },

@@ -112,15 +112,23 @@ function drawLastTicket(ticketNumber){
     </div>
   `;
     newTicket.id = ticketNumber;
+    newTicket.dataset.ticketId = realTicket.id
     newTicket.addEventListener('click',function(){
         if(!gameState.pause) {
             nowTickets[this.id].clicks--;
             this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
             if(nowTickets[this.id].clicks === 0 && !this.className.includes('ticket--closing')){
                 this.classList.add('ticket--closing')
+                if(realTicket.locks) {
+                    realTicket.locks.forEach(id => {
+                        document.querySelectorAll(`[data-ticket-id='${id}']`).forEach(el => {
+                            nowTickets[el.id].clicks = 1
+                            el.click()
+                        })
+                    })
+                    availableTickets = availableTickets.filter(id => !realTicket.locks.includes(id))
+                }
                 setTimeout(() => {
-                    const realTicket = allTickets[nowTickets[ticketNumber].id];
-        
                     // player or gamestate changes
                     gameState.anxietyPerTick -= realTicket.anxietyPerTick;
                     player.anxiety -= realTicket.anxietyRelief;
