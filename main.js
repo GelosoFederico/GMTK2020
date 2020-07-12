@@ -145,8 +145,21 @@ function drawLastTicket(ticketNumber){
         <h5 class="mb-1">${realTicket.title}</h5>
       </div>
       <p class="mb-1" id="${ticketNumber + 'clicks'}">CLICKS LEFT ${ticket.clicks}</p>
-      <p class="mb-1" >anx+ ${realTicket.anxietyPerTick} anx- ${realTicket.anxietyRelief} hap+ ${realTicket.happinessRelief}</p>
-    </button>
+      <div style="float: left" title="Anxiety while not being attended">
+        <i class="fa fa-heartbeat" style="color: red;" aria-hidden="true"></i>
+        <i class="fa fa-arrow-up" style="color: red;" aria-hidden="true"></i>
+        ${realTicket.anxietyPerTick} 
+      </div>
+      <div style="float: left; margin: 0px 5px;" title="Anxiety relief">
+        <i class="fa fa-heartbeat" style="color: green;" aria-hidden="true"></i>
+        <i class="fa fa-arrow-down" style="color: green;" aria-hidden="true"></i>
+        ${realTicket.anxietyRelief} 
+      </div>
+      <div style="float: left"  title="Happiness when finishing">
+        <i class="fa fa-smile-o" style="color: green;" aria-hidden="true"></i>
+        ${realTicket.happinessRelief}
+      </div>
+        </button>
     </div>
   `;
     newTicket.id = ticketNumber;
