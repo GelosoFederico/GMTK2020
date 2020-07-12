@@ -140,7 +140,7 @@ function drawLastTicket(ticketNumber){
     </div>
   `;
     newTicket.id = ticketNumber;
-    newTicket.dataset.ticketId = realTicket.id
+    newTicket.dataset.ticketId = realTicket.id;
     incomingTicketSound();
     // click ticket event
     newTicket.addEventListener('click',function(){
@@ -190,12 +190,16 @@ function drawLastTicket(ticketNumber){
     openPos.splice(arrPos,1);
 }
 
+
+// Sound functions
 function incomingTicketSound() {
-    incomingTicketSoundFiles[Math.floor(Math.random()*(incomingTicketSoundFiles.length))].play();
+    if(!gameState.muted)
+        incomingTicketSoundFiles[Math.floor(Math.random()*(incomingTicketSoundFiles.length))].play();
 }
 
 function ticketCantEnterSound() {
-    ticketCantEnterSoundFile.play();
+    if(!gameState.muted)
+        ticketCantEnterSoundFile.play();
 }
 
 // preloaded audios
@@ -236,11 +240,20 @@ var player = {
 document.getElementById('pause_button').addEventListener('click',function(){
     gameState.pause = !gameState.pause;
     if(gameState.pause) {
-        document.getElementById('pause-alert').style = 'display: block;'
+        document.getElementById('pause-alert').style = 'display: block;';
     }else {
-        document.getElementById('pause-alert').style = 'display: none;'
+        document.getElementById('pause-alert').style = 'display: none;';
     }
-})
+});
+document.getElementById('mute_button').addEventListener('click',function(){
+    gameState.muted = !gameState.muted;
+    if(gameState.muted) {
+        document.getElementById('mute_button').innerText = 'UNMUTE';
+    }else {
+        document.getElementById('mute_button').innerText = 'MUTE';
+    }
+});
+
 
 //TODO: REMOVE BEFORE GAMEJAM DEADLINE
 document.addEventListener('keydown', (e) => {
