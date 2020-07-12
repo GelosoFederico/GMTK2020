@@ -140,11 +140,21 @@ function drawLastTicket(ticketNumber){
     const realTicket = allTickets[nowTickets[ticketNumber].id];
     newTicket.innerHTML = `
     <div class="list-group">
-    <button class="ticket list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem; background: transparent;">
+    <button class="ticket list-group-item list-group-item-action" style="padding: 0.25rem 0.75rem; background: transparent;">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">${realTicket.title}</h5>
       </div>
-      <p class="mb-1" id="${ticketNumber + 'clicks'}">CLICKS LEFT ${ticket.clicks}</p>
+      <div style="height: 20px; border: 1px solid black; border-radius: 5px; position: relative; margin: 0px 10px">
+            <span class="ticket-clicks" style="
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                color: black;
+                font-size: 12px;
+                text-align: center;
+            ">CLICKS LEFT ${ticket.clicks}</span>
+            <div class="ticket-clicks-bar" data-max="${ticket.clicks}" style="height: 100%; width: 100%; background-color: red;"></div>
+      </div>
       <div style="float: left" title="Anxiety while not being attended">
         <i class="fa fa-heartbeat" style="color: red;" aria-hidden="true"></i>
         <i class="fa fa-arrow-up" style="color: red;" aria-hidden="true"></i>
@@ -165,11 +175,15 @@ function drawLastTicket(ticketNumber){
     newTicket.id = ticketNumber;
     newTicket.dataset.ticketId = realTicket.id;
     incomingTicketSound();
+    const clickSpan = newTicket.querySelector(`.ticket-clicks`)
+    const clickBar = newTicket.querySelector(`.ticket-clicks-bar`);
     // click ticket event
     newTicket.addEventListener('click',function(){
         if(!gameState.pause) {
             nowTickets[this.id].clicks--;
-            this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
+            clickSpan.innerText = `CLICKS LEFT ${ticket.clicks}`;
+            clickBar.style.width = Math.floor(ticket.clicks / clickBar.dataset.max * 100) + '%';
+            
             // finished ticket logic
             if(nowTickets[this.id].clicks === 0 && !this.className.includes('ticket--closing')){
                 this.classList.add('ticket--closing')
