@@ -102,7 +102,7 @@ function drawLastTicket(ticketNumber){
     const realTicket = allTickets[nowTickets[ticketNumber].id];
     newTicket.innerHTML = `
     <div class="list-group">
-    <button class="list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem;">
+    <button class="ticket list-group-item list-group-item-action flex-column align-items-start" style="padding: 0.25rem 0.75rem; background: transparent;">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">${realTicket.title}</h5>
       </div>
@@ -117,26 +117,29 @@ function drawLastTicket(ticketNumber){
             nowTickets[this.id].clicks--;
             this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
             if(nowTickets[this.id].clicks === 0){
-                const realTicket = allTickets[nowTickets[ticketNumber].id];
-    
-                // player or gamestate changes
-                gameState.anxietyPerTick -= realTicket.anxietyPerTick;
-                player.anxiety -= realTicket.anxietyRelief;
-                if(player.anxiety < 0) player.anxiety = 0;
-                player.happiness += realTicket.happinessRelief;
-    
-                // Available tickets changes
-                if(realTicket.unlocks) {
-                    for(let i=0; i<realTicket.unlocks.length; i++) {
-                        availableTickets.push(realTicket.unlocks[i]);
-                    }
-                }
-       
-                // UI changes
-                const parentId = this.parentElement.id.substring(3); // from pos##
-                this.parentElement.removeChild(this);
-                openPos.push(parseInt(parentId));
+                this.classList.add('ticket--closing')
+                setTimeout(() => {
+                    const realTicket = allTickets[nowTickets[ticketNumber].id];
         
+                    // player or gamestate changes
+                    gameState.anxietyPerTick -= realTicket.anxietyPerTick;
+                    player.anxiety -= realTicket.anxietyRelief;
+                    if(player.anxiety < 0) player.anxiety = 0;
+                    player.happiness += realTicket.happinessRelief;
+        
+                    // Available tickets changes
+                    if(realTicket.unlocks) {
+                        for(let i=0; i<realTicket.unlocks.length; i++) {
+                            availableTickets.push(realTicket.unlocks[i]);
+                        }
+                    }
+           
+                    // UI changes
+                    const parentId = this.parentElement.id.substring(3); // from pos##
+                    this.parentElement.removeChild(this);
+                    openPos.push(parseInt(parentId));
+            
+                }, 700) // MUST BE SAME (or a bit less) TIME AS ANIMATION
             }
         }
     });
