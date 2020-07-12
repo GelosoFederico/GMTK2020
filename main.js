@@ -87,7 +87,8 @@ function loseState() {
 
 function generateTickets(){
     // Salio el random y, si esta en tutorial, termino su ticket
-    if(Math.random() > 0.9 && ((!gameState.tutorialMode && availableTickets.length) || (gameState.tutorialMode && gameState.tutorialTicketDone))) {
+    let chances = 0.6 + ((16 - openPos.length) * 0.023); // from 0.6 to 0.92 approx
+    if(Math.random() > chances && ((!gameState.tutorialMode && availableTickets.length) || (gameState.tutorialMode && gameState.tutorialTicketDone))) {
         // full tickets in screen logic
         if(openPos.length == 0 && !gameState.ticketAlert){
             ticketCantEnterSound();
