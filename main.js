@@ -1,4 +1,5 @@
 import allTickets from './tickets.js'
+import getTicketApproxValues from './getTicketApproxValues.js'
 
 (function() {
 
@@ -138,6 +139,7 @@ function drawLastTicket(ticketNumber){
     const newTicket = document.createElement('div');
     const ticket = nowTickets[ticketNumber];
     const realTicket = allTickets[nowTickets[ticketNumber].id];
+    const approxValues = getTicketApproxValues(realTicket)
     newTicket.innerHTML = `
     <div class="list-group">
     <button class="ticket list-group-item list-group-item-action" style="padding: 0.25rem 0.75rem; background: transparent;">
@@ -158,16 +160,16 @@ function drawLastTicket(ticketNumber){
       <div style="float: left" title="Anxiety while not being attended">
         <i class="fa fa-heartbeat" style="color: red;" aria-hidden="true"></i>
         <i class="fa fa-arrow-up" style="color: red;" aria-hidden="true"></i>
-        ${realTicket.anxietyPerTick} 
+        ${approxValues.anxietyPerTick} 
       </div>
       <div style="float: left; margin: 0px 5px;" title="Anxiety relief on completion">
         <i class="fa fa-heartbeat" style="color: green;" aria-hidden="true"></i>
         <i class="fa fa-arrow-down" style="color: green;" aria-hidden="true"></i>
-        ${realTicket.anxietyRelief} 
+        ${approxValues.anxietyRelief} 
       </div>
       <div style="float: left"  title="Happiness gained on completion">
         <i class="fa fa-smile-o" style="color: green;" aria-hidden="true"></i>
-        ${realTicket.happinessRelief}
+        ${approxValues.happinessRelief}
       </div>
         </button>
     </div>
