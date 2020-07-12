@@ -34,6 +34,10 @@ function redrawStats(){
     } else {
         gameState.countdownHappiness = false;
     }
+    // Winning conditions
+    if (player.happiness > 1000) {
+        winningState();
+    }
 
     const playerHappinessPerc = `${Math.floor(player.happiness / 10)}%`;
     const playerAnxietyPerc = `${Math.floor(player.anxiety / 10)}%`;
@@ -60,6 +64,12 @@ function updateImage(){
     }
 }
 
+function winningState() {
+    document.getElementById('win-alert').style = 'display: block;';
+    gameState.pause = true;
+    document.getElementById('restart-button').style = 'display: block;';
+}
+
 function loseState() {
     let msg = '';
     if(gameState.countdownHappiness) {
@@ -72,7 +82,7 @@ function loseState() {
     document.getElementById('lost-alert').innerText = msg;
     gameState.loss = true;
     gameState.pause = true;
-    document.getElementById('restart-button').style = 'display: block;';
+    document.getElementById('restart-button').style = 'display: ;';
 }
 
 function generateTickets(){
