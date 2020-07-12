@@ -62,7 +62,7 @@ function updateImage(){
 function loseState() {
     let msg = '';
     if(gameState.countdownHappiness) {
-        msg = 'YOU LOSE: HAPPINESS IS 0';
+        msg = 'YOU LOSE: YOUR HAPPINESS HAS GONE TO THE BOTTOM';
     }
     if(gameState.countdownAnxiety) {
         msg = 'YOU LOSE: YOUR ANXIETY HAS GONE TO THE TOP';
@@ -71,6 +71,7 @@ function loseState() {
     document.getElementById('lost-alert').innerText = msg;
     gameState.loss = true;
     gameState.pause = true;
+    document.getElementById('restart-button').style = 'display: block;';
 }
 
 function generateTickets(){
@@ -85,6 +86,8 @@ function generateTickets(){
             }, 3000);
             player.anxiety += 50;
             if (player.anxiety > 1000){
+                // we redraw them here so it shows 100%
+                redrawStats();
                 gameState.countdownAnxiety = true;
                 loseState();
             }
@@ -211,25 +214,23 @@ const incomingTicketSoundFiles = [
 ];
 const ticketCantEnterSoundFile = new Audio('assets/sound_blocked.mp3');
 
-const lockedTickets = {};
-let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+// set all global vars
+
+let lockedTickets = {};
+let openPos = [];
 let availableTickets = [];
-for(const ticketId in allTickets) {
-    const ticket = allTickets[ticketId];
-    if(ticket.starter) {
-        availableTickets.push(parseInt(ticketId));
-    }
-}
+
 
 let lastTicket = 0;
-const nowTickets = {};
+let nowTickets = {};
 var inMainLoop = false;
-const gameState = {
+let gameState = {
     anxietyPerTick : 0,
     pause: false,
     countdownHappiness: false,
     countdownAnxiety: false,
-    ticketAlert: false
+    ticketAlert: false,
+    muted: false,
 };
 
 var player = {
@@ -237,6 +238,47 @@ var player = {
     happiness : 200
 };
 
+
+
+// set starting conditions
+function clearScreen() {
+    for(let i=1; i<17; i++){
+        let thing = document.getElementById('pos'+i);
+        if(thing.lastElementChild) thing.removeChild(thing.lastElementChild);
+    }
+}
+
+function setStartingConditions() {
+    player.anxiety = 0;
+    player.happiness = 200;
+
+    gameState.anxietyPerTick = 0;
+    gameState.pause = false;
+    gameState.countdownHappiness = false;
+    gameState.countdownAnxiety = false;
+    gameState.ticketAlert = false;
+    gameState.muted = false;
+
+    lastTicket = 0;
+    inMainLoop = false;
+
+    nowTickets = {};
+    lockedTickets = {};    
+    openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+
+    availableTickets = [];
+    for(const ticketId in allTickets) {
+        const ticket = allTickets[ticketId];
+        if(ticket.starter) {
+            availableTickets.push(parseInt(ticketId));
+        }
+    }
+
+    clearScreen();
+}
+
+
+// Settings buttons
 document.getElementById('pause_button').addEventListener('click',function(){
     gameState.pause = !gameState.pause;
     if(gameState.pause) {
@@ -245,6 +287,7 @@ document.getElementById('pause_button').addEventListener('click',function(){
         document.getElementById('pause-alert').style = 'display: none;';
     }
 });
+
 document.getElementById('mute_button').addEventListener('click',function(){
     gameState.muted = !gameState.muted;
     if(gameState.muted) {
@@ -254,6 +297,13 @@ document.getElementById('mute_button').addEventListener('click',function(){
     }
 });
 
+document.getElementById('restart-button').addEventListener('click',function(){
+    setStartingConditions();
+    document.getElementById('pause-alert').style = 'display: none;';
+    document.getElementById('mute_button').innerText = 'MUTE';
+    document.getElementById('lost-alert').style = 'display: none;';
+    document.getElementById('restart-button').style = 'display: none;';
+});
 
 //TODO: REMOVE BEFORE GAMEJAM DEADLINE
 document.addEventListener('keydown', (e) => {
@@ -269,6 +319,7 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
+setStartingConditions();
 // Here we set the game loop
 // if this game loop is janky, we should change it for something like what is explained here http://nokarma.org/2011/02/02/javascript-game-development-the-game-loop/index.html
 var interval = setInterval(mainLoop, 1000/5); 
