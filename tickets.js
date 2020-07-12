@@ -1,7 +1,7 @@
 export default {
     1: {
         'id': 1,
-        'title': 'work',
+        'title': 'Work',
         'clicks': 10,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
@@ -9,7 +9,7 @@ export default {
     },
     2: {
         'id': 2,
-        'title': 'study',
+        'title': 'Study',
         'clicks': 10,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
@@ -17,7 +17,7 @@ export default {
     },
     3: {
         'id': 3,
-        'title': 'take a walk',
+        'title': 'Take a walk',
         'clicks': 5,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
@@ -25,7 +25,7 @@ export default {
     },
     4: {
         'id': 4,
-        'title': 'pet a cat',
+        'title': 'Pet a cat',
         'clicks': 2,
         'anxietyPerTick': 0,
         'anxietyRelief': 3,
@@ -33,7 +33,7 @@ export default {
     },
     5: {
         'id': 5,
-        'title': 'get a cat',
+        'title': 'Get a cat',
         'clicks': 5,
         'anxietyPerTick': 0,
         'anxietyRelief': 1,
@@ -43,7 +43,7 @@ export default {
     },
     6: {
         'id': 6,
-        'title': 'clean the litter box',
+        'title': 'Clean the litter box',
         'clicks': 10,
         'anxietyPerTick': 0.3,
         'anxietyRelief': 1,
