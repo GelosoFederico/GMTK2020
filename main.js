@@ -64,7 +64,7 @@ function loseState() {
         msg = 'YOU LOSE: HAPPINESS IS 0';
     }
     if(gameState.countdownAnxiety) {
-        msg = 'YOU LOSE: YOUR ANXIETY HAD GONE TO THE TOP';
+        msg = 'YOU LOSE: YOUR ANXIETY HAS GONE TO THE TOP';
     }
     document.getElementById('lost-alert').style = 'display: block;';
     document.getElementById('lost-alert').innerText = msg;
