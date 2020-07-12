@@ -581,6 +581,42 @@ export default {
         anxietyRelief: 500,
         unique: true,
         happinessRelief: 500,
+    },
+    58: {
+        id: 58,
+        title: 'Meet your friends',
+        clicks: 10,
+        anxietyPerTick: 0.1,
+        anxietyRelief: 10,
+        happinessRelief: 20,
+        starter: true,
+    },
+    59: {
+        id: 59,
+        title: 'Look up COVID statistics',
+        clicks: 3,
+        anxietyPerTick: 0,
+        anxietyRelief: 10,
+        happinessRelief: 0,
+        starter: true,
+    },
+    60: {
+        id: 60,
+        title: 'Check twitter',
+        clicks: 3,
+        anxietyPerTick: 0,
+        anxietyRelief: 20,
+        happinessRelief: -5,
+        starter: true,
+    },
+    61: {
+        id: 61,
+        title: 'Drink some vodka',
+        clicks: 3,
+        anxietyPerTick: 0,
+        anxietyRelief: 50,
+        happinessRelief: -10,
+        starter: true,
     }
 
 
