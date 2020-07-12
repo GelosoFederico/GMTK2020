@@ -240,7 +240,7 @@ export default {
     },
     25: {
         'id': 25,
-        'title': 'Spend quality time with teddy',
+        'title': 'Spend quality time with Teddy',
         'clicks': 12,
         'anxietyPerTick': 0,
         'anxietyRelief': 1,
@@ -250,7 +250,7 @@ export default {
     },
     26: {
         'id': 26,
-        'title': 'Listen to teddy',
+        'title': 'Listen to Teddy',
         'clicks': 5,
         'anxietyPerTick': 0.5,
         'anxietyRelief': 0,
