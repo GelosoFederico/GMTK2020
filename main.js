@@ -57,6 +57,9 @@ function updateImage(){
     } else {
         newImage = 'assets/image_'+idImage+'.svg';
     }
+    if (gameState.tutorialMode) {
+        newImage = 'assets/image_tutorial.gif';
+    }
     if(oldImage.split('assets')[1] != newImage.split('assets')[1]) {
         document.getElementById('image-status').src = newImage;
     }
@@ -116,7 +119,7 @@ function generateTickets(){
             let realTicket;
             if(gameState.tutorialMode){
                 gameState.tutorialTicketDone = false;
-                realTicket = allTickets[29 + gameState.tutorialTicket];
+                realTicket = allTickets[tutorialTickets[gameState.tutorialTicket]];
             }else{
                 realTicket = allTickets[realTicketId];
             }
@@ -242,7 +245,7 @@ function drawLastTicket(ticketNumber){
                     if(gameState.tutorialMode){
                         gameState.tutorialTicket++;
                         gameState.tutorialTicketDone = true;
-                        if(gameState.tutorialTicket > nTutorialTickets) gameState.tutorialMode = false;
+                        if(gameState.tutorialTicket > (tutorialTickets.length-1)) gameState.tutorialMode = false;
                     }
            
                     // UI changes
@@ -285,6 +288,7 @@ const ticketCantEnterSoundFile = new Audio('assets/sound_blocked.mp3');
 
 // set all global vars
 
+let tutorialTickets = [29,30,31,32,33,71,72,73,34,35];
 let lockedTickets = {};
 let openPos = [];
 let availableTickets = [];

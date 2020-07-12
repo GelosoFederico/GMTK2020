@@ -721,4 +721,29 @@ export default {
         uniqueLine: true,
         unlocks: [67],
     },
+    71: {
+        id: 71,
+        title: 'Read before you click',
+        clicks: 1,
+        anxietyPerTick: 0,
+        anxietyRelief: 0,
+        happinessRelief: 0,
+    },
+    72: {
+        id: 72,
+        title: 'Some things are bad',
+        clicks: 1,
+        anxietyPerTick: 0,
+        anxietyRelief: 0,
+        happinessRelief: 0,
+    },
+    73: {
+        id: 73,
+        title: 'And some have to be taken care first',
+        clicks: 1,
+        anxietyPerTick: 0,
+        anxietyRelief: 0,
+        happinessRelief: 0,
+    },
+
 }
