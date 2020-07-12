@@ -186,7 +186,7 @@ function drawLastTicket(ticketNumber){
                     if(gameState.tutorialMode){
                         gameState.tutorialTicket++;
                         gameState.tutorialTicketDone = true;
-                        if(gameState.tutorialTicket > 2) gameState.tutorialMode = false;
+                        if(gameState.tutorialTicket > nTutorialTickets) gameState.tutorialMode = false;
                     }
            
                     // UI changes
@@ -232,6 +232,7 @@ const ticketCantEnterSoundFile = new Audio('assets/sound_blocked.mp3');
 let lockedTickets = {};
 let openPos = [];
 let availableTickets = [];
+let nTutorialTickets = 6;
 
 
 let lastTicket = 0;
@@ -251,7 +252,7 @@ let gameState = {
 
 var player = {
     anxiety : 0,
-    happiness : 200
+    happiness : 150
 };
 
 
@@ -266,7 +267,7 @@ function clearScreen() {
 
 function setStartingConditions() {
     player.anxiety = 0;
-    player.happiness = 200;
+    player.happiness = 150;
 
     gameState.anxietyPerTick = 0;
     gameState.pause = false;
