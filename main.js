@@ -234,6 +234,9 @@ function drawLastTicket(ticketNumber){
                                 if(realTicket.unlocksWhen['locksItself']) {
                                     lockedTickets[realTicket.id] = true;
                                 }
+                                if(realTicket.unlocksWhen['locksItselfLine']) {
+                                    availableTickets.splice(availableTickets.indexOf(realTicket.id),1);
+                                }
                             }
                         }
                     }

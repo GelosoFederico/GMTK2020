@@ -375,7 +375,7 @@ export default {
         'clicks': 20,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 0,
-        'happinessRelief': 10,
+        'happinessRelief': 40,
         'unique': true,
     },
     39: {
@@ -384,7 +384,7 @@ export default {
         'clicks': 20,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 0,
-        'happinessRelief': 10,
+        'happinessRelief': 40,
         'unique': true,
     },
     40: {
@@ -393,24 +393,24 @@ export default {
         'clicks': 30,
         'anxietyPerTick': 0.3,
         'anxietyRelief': 0,
-        'happinessRelief': 20,
+        'happinessRelief': 50,
         'unique': true,
         'unlocks': [41, 44],
     },
     41: {
         'id': 41,
         'title': 'Fix bug in your game',
-        'clicks': 10,
+        'clicks': 7,
         'anxietyPerTick': 0.4,
         'anxietyRelief': 10,
-        'happinessRelief': 10,
+        'happinessRelief': 20,
         'unique': true,
         'unlocks': [42],
     },
     42: {
         'id': 42,
         'title': 'Fix another bug in your game',
-        'clicks': 10,
+        'clicks': 7,
         'anxietyPerTick': 0.6,
         'anxietyRelief': 10,
         'happinessRelief': 10,
@@ -420,7 +420,7 @@ export default {
     43: {
         'id': 43,
         'title': 'Fix yet another bug',
-        'clicks': 20,
+        'clicks': 10,
         'anxietyPerTick': 0.8,
         'anxietyRelief': 10,
         'happinessRelief': 10,
@@ -440,15 +440,15 @@ export default {
     45: {
         'id': 45,
         'title': 'Keep working on your game',
-        'clicks': 40,
-        'anxietyPerTick': 0.3,
+        'clicks': 30,
+        'anxietyPerTick': 0.2,
         'anxietyRelief': 5,
-        'happinessRelief': 5,
+        'happinessRelief': 20,
         'unique': false,
         'uniqueLine': true,
         'unlocks': [45],
         'unlocksWhen': {
-            'number': 10,
+            'number': 6,
             'unlocks': [46],
             'locksItself': true,
         }
@@ -457,9 +457,9 @@ export default {
         'id': 46,
         'title': 'Polish your game',
         'clicks': 30,
-        'anxietyPerTick': 0.5,
-        'anxietyRelief': 2,
-        'happinessRelief': 3,
+        'anxietyPerTick': 0.3,
+        'anxietyRelief': 10,
+        'happinessRelief': 15,
         'unique': false,
         'uniqueLine': true,
         'unlocks': [46],
@@ -475,7 +475,7 @@ export default {
         'clicks': 100,
         'anxietyPerTick': 0.2,
         'anxietyRelief': 200,
-        'happinessRelief': 400,
+        'happinessRelief': 500,
         'unique': true,
     },
     48: {
@@ -695,7 +695,7 @@ export default {
         'unlocksWhen': {
             'number': 5,
             'unlocks': [69],
-            'locksItself': true,
+            'locksItselfLine': true,
         }
     },
     69: {
@@ -708,7 +708,7 @@ export default {
         'unlocksWhen': {
             'number': 5,
             'unlocks': [70],
-            'locksItself': true,
+            'locksItselfLine': true,
         }
     },
     70: {
