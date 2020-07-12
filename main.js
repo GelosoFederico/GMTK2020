@@ -53,7 +53,7 @@ function updateImage(){
     } else {
         newImage = 'assets/image_'+idImage+'.svg';
     }
-    if(oldImage != newImage) {
+    if(oldImage.split('assets')[1] != newImage.split('assets')[1]) {
         document.getElementById('image-status').src = newImage;
     }
 }
