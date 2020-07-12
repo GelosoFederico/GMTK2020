@@ -22,11 +22,13 @@ function redrawStats(){
     // losing conditions
     if (player.anxiety > 1000){
         gameState.countdownAnxiety = true;
+        loseState();
     } else {
         gameState.countdownAnxiety = false;
     }
     if (player.happiness < 0){
         gameState.countdownHappiness = true;
+        loseState();
     } else {
         gameState.countdownHappiness = false;
     }
@@ -56,6 +58,20 @@ function updateImage(){
     }
 }
 
+function loseState() {
+    let msg = '';
+    if(gameState.countdownHappiness) {
+        msg = 'YOU LOSE: HAPPINESS IS 0';
+    }
+    if(gameState.countdownAnxiety) {
+        msg = 'YOU LOSE: YOUR ANXIETY HAD GONE TO THE TOP';
+    }
+    document.getElementById('lost-alert').style = 'display: block;';
+    document.getElementById('lost-alert').innerText = msg;
+    gameState.loss = true;
+    gameState.pause = true;
+}
+
 function generateTickets(){
     if(Math.random() > 0.9) {
         lastTicket++;
@@ -73,6 +89,11 @@ function generateTickets(){
             availableTickets.splice(avTicket);
         } 
     }
+}
+
+function clearTicketAlert(){
+    document.getElementById('tickets-full').style = 'display: none;';
+    gameState.ticketAlert = false;
 }
 
 function drawLastTicket(ticketNumber){
@@ -101,6 +122,7 @@ function drawLastTicket(ticketNumber){
                 // player or gamestate changes
                 gameState.anxietyPerTick -= realTicket.anxietyPerTick;
                 player.anxiety -= realTicket.anxietyRelief;
+                if(player.anxiety < 0) player.anxiety = 0;
                 player.happiness += realTicket.happinessRelief;
     
                 // Available tickets changes
@@ -119,11 +141,18 @@ function drawLastTicket(ticketNumber){
         }
     });
 
-    // losing condition: full tickets
-    if(openPos.length == 0){
-        gameState.loss = true;
-        document.getElementById('lost-alert-tickets').style = 'display: block;';
-        gameState.pause = true;
+    // full tickets
+    if(openPos.length == 0 && !gameState.ticketAlert){
+        gameState.ticketAlert = true;
+        document.getElementById('tickets-full').style = 'display: block;';
+        setTimeout(function() {
+            clearTicketAlert();
+          }, 3000);
+        player.anxiety += 50;
+        if (player.anxiety > 1000){
+            gameState.countdownAnxiety = true;
+            loseState();
+        }
         return true;
     }
     const arrPos = Math.floor(Math.random() * openPos.length);
@@ -151,7 +180,8 @@ const gameState = {
     anxietyPerTick : 0,
     pause: false,
     countdownHappiness: false,
-    countdownAnxiety: false
+    countdownAnxiety: false,
+    ticketAlert: false
 };
 
 var player = {
