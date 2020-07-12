@@ -160,12 +160,12 @@ function drawLastTicket(ticketNumber){
         <i class="fa fa-arrow-up" style="color: red;" aria-hidden="true"></i>
         ${realTicket.anxietyPerTick} 
       </div>
-      <div style="float: left; margin: 0px 5px;" title="Anxiety relief">
+      <div style="float: left; margin: 0px 5px;" title="Anxiety relief on completion">
         <i class="fa fa-heartbeat" style="color: green;" aria-hidden="true"></i>
         <i class="fa fa-arrow-down" style="color: green;" aria-hidden="true"></i>
         ${realTicket.anxietyRelief} 
       </div>
-      <div style="float: left"  title="Happiness when finishing">
+      <div style="float: left"  title="Happiness gained on completion">
         <i class="fa fa-smile-o" style="color: green;" aria-hidden="true"></i>
         ${realTicket.happinessRelief}
       </div>
