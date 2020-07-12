@@ -116,7 +116,7 @@ function drawLastTicket(ticketNumber){
         if(!gameState.pause) {
             nowTickets[this.id].clicks--;
             this.childNodes[1].childNodes[1].childNodes[3].innerText = `CLICKS LEFT ${ticket.clicks}`;
-            if(nowTickets[this.id].clicks === 0){
+            if(nowTickets[this.id].clicks === 0 && !this.className.includes('ticket--closing')){
                 this.classList.add('ticket--closing')
                 setTimeout(() => {
                     const realTicket = allTickets[nowTickets[ticketNumber].id];
