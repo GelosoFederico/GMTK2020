@@ -9,8 +9,6 @@ function mainLoop(){
             console.error('mainLoop called while processing loop. There may be slowdowns');
         }
         inMainLoop = true;
-        // debugging log
-        console.log(gameState, player, availableTickets);
         redrawStats();
         generateTickets();
         inMainLoop = false;
@@ -382,20 +380,6 @@ document.getElementById('restart-button').addEventListener('click',function(){
     document.getElementById('restart-button').style = 'display: none;';
     document.getElementById('win-alert').style = 'display: none;';
 });
-
-//TODO: REMOVE BEFORE GAMEJAM DEADLINE
-document.addEventListener('keydown', (e) => {
-    switch(e.key) {
-        case "m":
-            return player.anxiety += 150;
-        case "n":
-            return player.anxiety -= 150;
-        case "b":
-            return player.happiness += 150;
-        case "v":
-            return player.happiness -= 150;
-    }
-})
 
 setStartingConditions();
 // Here we set the game loop
