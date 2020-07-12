@@ -45,7 +45,7 @@ function redrawStats(){
 }
 
 function updateImage(){
-    const idImage = 1+'_'+(Math.ceil(player.anxiety/200) ? Math.ceil(player.anxiety/200) : 1);
+    const idImage = 1+'_'+Math.min(Math.max(Math.ceil(player.anxiety/200), 1), 5);
     const oldImage = document.getElementById('image-status').src;
     let newImage = '';
     if(idImage === '1_5'){
