@@ -5,7 +5,8 @@ export default {
         'clicks': 10,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
-        'happinessRelief': 1
+        'happinessRelief': 1,
+        'starter': true,
     },
     2: {
         'id': 2,
@@ -13,7 +14,8 @@ export default {
         'clicks': 10,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
-        'happinessRelief': 1
+        'happinessRelief': 1,
+        'starter': true,
     },
     3: {
         'id': 3,
@@ -21,7 +23,8 @@ export default {
         'clicks': 5,
         'anxietyPerTick': 0.1,
         'anxietyRelief': 2,
-        'happinessRelief': 1
+        'happinessRelief': 1,
+        'starter': true,
     },
     4: {
         'id': 4,
@@ -29,7 +32,7 @@ export default {
         'clicks': 2,
         'anxietyPerTick': 0,
         'anxietyRelief': 3,
-        'happinessRelief': 2
+        'happinessRelief': 2,
     },
     5: {
         'id': 5,
@@ -39,7 +42,8 @@ export default {
         'anxietyRelief': 1,
         'happinessRelief': 10,
         'unlocks': [4, 6],
-        'unique': true
+        'uniqueLine': true,
+        'starter': true,
     },
     6: {
         'id': 6,
@@ -47,7 +51,7 @@ export default {
         'clicks': 10,
         'anxietyPerTick': 0.3,
         'anxietyRelief': 1,
-        'happinessRelief': 1
+        'happinessRelief': 1,
     },
     7: {
         'id': 7,
@@ -56,7 +60,10 @@ export default {
         'anxietyPerTick': 0.2,
         'anxietyRelief': 0,
         'happinessRelief': 4,
-        'unique': false
+        'unique': false,
+        'uniqueLine': true,
+        'unlocks': [7],
+        'starter': true,
     },
     8: {
         'id': 8,
@@ -66,7 +73,10 @@ export default {
         'anxietyRelief': 0,
         'happinessRelief': 0,
         'unlocks': 0,
-        'unique': false
+        'unique': false,
+        'uniqueLine': true,
+        'unlocks': [8],
+        'starter': true,
     },
     9: {
         'id': 9,
@@ -76,7 +86,10 @@ export default {
         'anxietyRelief': 0,
         'happinessRelief': 0,
         'unlocks': 0,
-        'unique': false
+        'unique': false,
+        'uniqueLine': true,
+        'unlocks': [9],
+        'starter': true,
     },
     10: {
         'id': 10,
@@ -86,7 +99,7 @@ export default {
         'anxietyRelief': 1,
         'happinessRelief': 10,
         'unlocks': 0,
-        'unique': false
+        'uniqueLine': true,
     },
     11: {
         'id': 11,
@@ -96,7 +109,8 @@ export default {
         'anxietyRelief': 0,
         'happinessRelief': -5,
         'unlocks': 0,
-        'unique': false
+        'unique': true,
+        'starter': true,
     },
     12: {
         'id': 12,
@@ -106,7 +120,8 @@ export default {
         'anxietyRelief': 0,
         'happinessRelief': 1,
         'unlocks': [13],
-        'unique': false
+        'uniqueLine': true,
+        'starter': true,
     },
     13: {
         'id': 13,
@@ -115,8 +130,8 @@ export default {
         'anxietyPerTick': 0.2,
         'anxietyRelief': 0,
         'happinessRelief': 1,
-        'unlocks': 0,
-        'unique': true
+        'unlocks': [12],
+        'uniqueLine': true
     },
     14: {
         'id': 14,
@@ -125,8 +140,10 @@ export default {
         'anxietyPerTick': 0.5,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
-        'unique': false
+        'unlocks': [15],
+        'unique': false,
+        'uniqueLine': true,
+        'starter': true,
     },
     15: {
         'id': 15,
@@ -222,7 +239,8 @@ export default {
         'anxietyRelief': 0,
         'happinessRelief': 2,
         'unlocks': [25],
-        'unique': true
+        'unique': true,
+        'starter': true,
     },
     25: {
         'id': 25,
@@ -231,7 +249,7 @@ export default {
         'anxietyPerTick': 0,
         'anxietyRelief': 1,
         'happinessRelief': 5,
-        'unlocks': 0,
+        'unlocks': [26],
         'unique': false
     },
     26: {
@@ -241,7 +259,7 @@ export default {
         'anxietyPerTick': 0.5,
         'anxietyRelief': 0,
         'happinessRelief': 0,
-        'unlocks': 0,
+        'unlocks': [27],
         'unique': true
     },
     27: {

@@ -8,7 +8,7 @@ function mainLoop(){
             console.error('mainLoop called while processing loop. There may be slowdowns');
         }
         inMainLoop = true;
-        console.log(gameState, player)
+        console.log(gameState, player, availableTickets);
         redrawStats();
         generateTickets();
         inMainLoop = false;
@@ -77,17 +77,26 @@ function generateTickets(){
         lastTicket++;
         const avTicket = Math.floor(Math.random() * availableTickets.length);
         const realTicketId = availableTickets[avTicket];
-        const realTicket = allTickets[realTicketId];
-        const ticket = {
-            'id': realTicket.id,
-            'clicks': realTicket.clicks
-        };
-        nowTickets[lastTicket] = ticket;
-        gameState.anxietyPerTick += realTicket.anxietyPerTick;
-        drawLastTicket(lastTicket);
-        if(realTicket.unique){
-            availableTickets.splice(avTicket);
-        } 
+        if(lockedTickets[avTicket]){
+            availableTickets.splice(avTicket,1);
+        } else {
+            const realTicket = allTickets[realTicketId];
+            const ticket = {
+                'id': realTicket.id,
+                'clicks': realTicket.clicks
+            };
+            nowTickets[lastTicket] = ticket;
+            gameState.anxietyPerTick += realTicket.anxietyPerTick;
+            if(realTicket.unique){
+                availableTickets.splice(avTicket,1);
+                lockedTickets[avTicket] = true;
+            } 
+            if(realTicket.uniqueLine){
+                availableTickets.splice(avTicket,1);
+            }
+
+            drawLastTicket(lastTicket);
+        }
     }
 }
 
@@ -164,17 +173,15 @@ function drawLastTicket(ticketNumber){
     openPos.splice(arrPos,1);
 }
 
+const lockedTickets = {};
 let openPos = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 let availableTickets = [];
-let unavailableTickets = [];
 for(const ticketId in allTickets) {
-    availableTickets.push(parseInt(ticketId))
-    const ticket = allTickets[ticketId]
-    if(ticket.unlocks) {
-        unavailableTickets = unavailableTickets.concat(ticket.unlocks)
+    const ticket = allTickets[ticketId];
+    if(ticket.starter) {
+        availableTickets.push(parseInt(ticketId));
     }
 }
-availableTickets = availableTickets.filter(ticket => !unavailableTickets.includes(ticket))
 
 let lastTicket = 0;
 const nowTickets = {};
