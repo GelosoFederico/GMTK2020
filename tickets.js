@@ -654,7 +654,7 @@ export default {
     },
     65: {
         id: 65,
-        title: 'Work harder for closing deadlines',
+        title: 'Deadline is closing in! Work harder!',
         clicks: 15,
         anxietyPerTick: 0.6,
         anxietyRelief: 20,
