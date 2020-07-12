@@ -542,7 +542,46 @@ export default {
         happinessRelief: 100,
         unique: true,
     },
-    
+    54: {
+        id: 54,
+        title: 'Watch a documentary on Japan',
+        clicks: 10,
+        anxietyPerTick: 0,
+        anxietyRelief: 0,
+        happinessRelief: 20,
+        unique: true,
+        unlocks: [55],
+        starter: true,
+    },
+    55: {
+        id: 55,
+        title: 'Research budget for going to Japan',
+        clicks: 13,
+        anxietyPerTick: 0.1,
+        anxietyRelief: 10,
+        happinessRelief: 20,
+        unique: true,
+        unlocks: [56]
+    },
+    56: {
+        id: 56,
+        title: 'Buy tickets to Japan',
+        clicks: 5,
+        anxietyPerTick: 0.5,
+        anxietyRelief: 30,
+        happinessRelief: 50,
+        unique: true,
+        unlocks: [57]
+    },
+    57: {
+        id: 57,
+        title: 'Go on vacations to Japan!',
+        clicks: 100,
+        anxietyPerTick: 0.1,
+        anxietyRelief: 500,
+        unique: true,
+        happinessRelief: 500,
+    }
 
 
 }
